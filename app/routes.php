@@ -122,6 +122,16 @@ Route::group(array('before' => 'auth'), function(){
 
     //****************************** Common Routes *******************************//
 
+    Route::resource('tokens', 'TokensController');
+
+    Route::get('token_reset', ['as' => 'token.reset', function(){
+        $token = TokenCount::first();
+        $token->count = 0;
+        $token->date = date('Y-m-d');
+        $token->update();
+        return ++$token->count;
+    }]);
+
     Route::resource('patients', 'PatientsController');
 
     Route::resource('schedules', 'SchedulesController');
@@ -237,6 +247,12 @@ Route::group(array('before' => 'auth'), function(){
         $appointments = Appointment::has('labtests')->get();
         $flag = "test_print";
         return View::make('appointment_based_data.appointments', compact('appointments', 'flag'));
+    });
+
+    Route::get('token_print', function(){
+        $id = Input::get('id');
+        $token = Token::find($id);
+        return View::make('printables.token_print', compact('token'));
     });
 
     Route::get('test_print', function(){

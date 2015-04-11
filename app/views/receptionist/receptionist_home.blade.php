@@ -28,6 +28,7 @@ class="current"
 			<div>
 				<div class="menu" style="margin-left: 10%; margin-right: 10%">
 					<a class="ferozi" href="appointments">Manage Appointments</a>
+					<a class="orange" href="tokens">Manage Tokens</a>
 					<a class="green" href="dutydays">Doctor Schedules</a>
 					<a class="pink" href="patients">Manage Patients</a>
 					<a class="purple" href="search_pmr">Manage Medical Record</a>

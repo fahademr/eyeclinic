@@ -14,6 +14,10 @@ class DatabaseSeeder extends Seeder {
 		$this->call('EmployeesTableSeeder');
 
         $this->command->info('Employees Table seeded!');
+
+        $this->call('TokenCountSeederTableSeeder');
+
+        $this->command->info('TokenCountSeederTableSeeder Table seeded!');
 	}
 
 }

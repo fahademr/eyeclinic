@@ -428,6 +428,24 @@ img {
   }
 }
 /*============  Butttons  =============*/
+.submit{
+    display: inline-block;
+    padding: 5px 34px 5px 33px;
+    font: 400 24px/30px 'Marvel', sans-serif;
+    color: #413d3d;
+    background: #f1f045;
+    cursor: pointer;
+    border: none;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.submit:hover {
+    color: #ffffff;
+    background: #249f9c;
+    text-decoration: none;
+}
+
 .btn_1 {
   display: inline-block;
   font: 400 30px/30px 'Marvel', sans-serif;

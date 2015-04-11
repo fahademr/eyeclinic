@@ -97,4 +97,9 @@ class Employee extends \Eloquent implements UserInterface, RemindableInterface{
         return $this->hasMany('Prescriotions');
     }
 
+    public function tokens()
+    {
+        return $this->hasMany('Token');
+    }
+
 }
