@@ -41,7 +41,7 @@
                     @foreach($dutydays as $dutyday)
                         <tr>
                             <td>{{{ $dutyday->employee->name}}}</td>
-                           
+
                             <td>
                             {{ link_to_route('dutydays.show', 'View', [$dutyday->employee->id], ['class' => 'data_table_btn', 'style' => 'margin-bottom: 2px'])}}
                             {{ link_to_route('dutydays.edit', 'Edit', [$dutyday->employee->id], ['class' => 'data_table_btn'])}}

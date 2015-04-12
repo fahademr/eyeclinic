@@ -39,14 +39,20 @@ Edit Prescriptions
               <tr>
                  <td width="272" height="55"><label>Visit Date*</label> </td>
                  <td width="333">
-                    <label>{{ $prescription->appointment->date }}</label>
+                    <label>{{ date('j F, Y', strtotime($prescription->token->created_at)) }}</label>
                  </td>
+              </tr>
+              <tr>
+                   <td width="272" height="55"><label>Visit Time*</label> </td>
+                   <td width="333">
+                      <label>{{ date('g:i A', strtotime($prescription->token->created_at)) }}</label>
+                   </td>
               </tr>
 
               <tr>
                 <td width="272" height="55"><label>Doctor Name*</label> </td>
                 <td width="333">
-                    <label>{{$prescription->appointment->employee->name}}</label>
+                    <label>{{$prescription->token->doctor->name}}</label>
                 </td>
                 </tr>
 

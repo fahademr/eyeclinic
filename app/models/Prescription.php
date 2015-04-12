@@ -8,7 +8,7 @@ class Prescription extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = ['code', 'medicines', 'note', 'patient_id', 'appointment_id'];
+	protected $fillable = ['code', 'medicines', 'note', 'patient_id', 'token_id'];
 
     // Relationships
     public function patient()
@@ -16,9 +16,9 @@ class Prescription extends \Eloquent {
         return $this->belongsTo('Patient');
     }
 
-    public function appointment()
+    public function token()
     {
-        return $this->belongsTo('Appointment');
+        return $this->belongsTo('Token');
     }
 
     public function employee()

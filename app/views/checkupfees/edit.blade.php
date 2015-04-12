@@ -3,7 +3,7 @@
                           TITLE
 =========================================================-->
 @section('title')
-Edit Checkup Fee
+Edit Operation Fee
 @stop
 
 
@@ -15,7 +15,7 @@ Edit Checkup Fee
         
 		<div class = "user_logo">
 			<div class="header_1 wrap_3 color_3" style="color: #fff; padding-top: 20px">
-                        Edit Checkup Fee
+                        Edit Operation Fee
             </div>
 		</div>
 		<br><br><br>
@@ -35,15 +35,15 @@ Edit Checkup Fee
             {{ Form::model($checkupfee, ['route' => ['checkupfees.update', $checkupfee->id], 'method' => 'put' ,'style' => 'padding: 40px', 'id' => 'regForm'])}}
                 <table width="621" height="220" border="0">
               <tr>
-                <td width="272" height="55"><label>Cheackup Fee*</label> </td>
+                <td width="272" height="55"><label>Operation Fee*</label> </td>
                 <td width="333">
                     {{ Form::input('number', 'checkup_fee', null, array('required' => 'true')) }}
                 </td>
                 </tr>
              
                 <tr>
-                <td width="272"><label>Checkup Note:</label></td>
-                <td width="333" height="200">{{ Form::textarea('fee_note', null, array('rows' => '7', 'cols' => '20', 'placeholder' => 'note', "style" => "font-size: 1.2em; margin-top: 2px; resize: none;") ) }}</td>
+                <td width="272"><label>Fee Note:</label></td>
+                <td width="333" height="200">{{ Form::textarea('fee_note', null, array('rows' => '7', 'cols' => '20', 'placeholder' => 'Enter note here...', "style" => "font-size: 1.2em; margin-top: 2px; resize: none;") ) }}</td>
                 </tr>
                 <tr> 
                 <td colspan="2"> 

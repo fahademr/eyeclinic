@@ -3,7 +3,7 @@
                           TITLE
 =========================================================-->
 @section('title')
-Edit Diagonostic Procedure
+Edit Procedure
 @stop
 
 
@@ -15,7 +15,7 @@ Edit Diagonostic Procedure
 
 		<div class = "user_logo">
 			<div class="header_1 wrap_3 color_3" style="color: #fff; padding-top: 20px">
-                        Edit Diagonostic Procedure
+                        Edit Procedure
             </div>
 		</div>
 		<br><br><br>
@@ -39,8 +39,8 @@ Edit Diagonostic Procedure
                 <table width="621" height="200" border="0">
 
               	<tr>
-                <td width="272"><label> Diagonostic Procedure*</label></td>
-                <td width="333" height="350">{{ Form::textarea('procedure_note', null, array('rows' => '7', 'cols' => '20', 'required' => 'true', 'placeholder' => 'note', "style" => "font-size: 1.2em; margin-top: 2px; resize: none;") ) }}</td>
+                <td width="272"><label> Operation Procedure*</label></td>
+                <td width="333" height="350">{{ Form::textarea('procedure_note', null, array('rows' => '7', 'cols' => '20', 'required' => 'true', 'placeholder' => 'Enter Procedure here...', "style" => "font-size: 1.2em; margin-top: 2px; resize: none;") ) }}</td>
                 </tr>
                 <tr>
                 <td colspan="2">

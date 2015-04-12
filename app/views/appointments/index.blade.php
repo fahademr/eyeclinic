@@ -3,7 +3,7 @@
                           TITLE
 =========================================================-->
 @section('title')
-    Manage Appointments
+    Manage Operation Bookings
 @stop
 
 
@@ -15,7 +15,7 @@
         
 		<div class = "user_logo">
 			<div class="header_1 wrap_3 color_3" style="color: #fff; padding-top: 20px">
-                        Manage Appointments
+                        Manage Operation Bookings
             </div>
 		</div>
 
@@ -25,7 +25,7 @@
             =========================================================-->
             <center style="margin-top: 7%;">
             @if(Auth::user()->role == 'Administrator' || Auth::user()->role == 'Receptionist')
-            <center>{{ link_to_route('appointments.create', 'Create Appointment', '', ['class' => 'btn_1'])}}</center>
+            <center>{{ link_to_route('appointments.create', 'Create Booking', '', ['class' => 'btn_1'])}}</center>
             @endif
             		<br>
                 <table id="example" style=" border: 1px solid black" class="display" cellspacing="0" width="80%">

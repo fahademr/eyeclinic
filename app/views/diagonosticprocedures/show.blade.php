@@ -3,7 +3,7 @@
                           TITLE
 =========================================================-->
 @section('title')
-Diagonostic Procedure Detail
+ Procedure Detail
 @stop
 
 
@@ -15,7 +15,7 @@ Diagonostic Procedure Detail
 
 		<div class = "user_logo">
 			<div class="header_1 wrap_3 color_3" style="color: #fff; padding-top: 20px">
-                       Diagonostic Procedure Detail
+                       Procedure Detail
             </div>
 		</div>
 		<br><br><br>
@@ -28,7 +28,7 @@ Diagonostic Procedure Detail
                 <table class="row_border" style=" border-radius: 10px; margin: 5%;" width="621" height="150">
 
                 <tr>
-                <td width="272"><label>Diagonostic Procedure:</label></td>
+                <td width="272"><label>Operation Procedure:</label></td>
                 <td width="333"><label><div style="width: 333px; word-wrap: break-word">{{{ $diagonosticprocedure->procedure_note }}}</div></label></td>
                 </tr>
 

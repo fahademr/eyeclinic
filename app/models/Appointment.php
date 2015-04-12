@@ -28,11 +28,6 @@ class Appointment extends \Eloquent {
         return $this->belongsTo('Employee');
     }
 
-    public function prescription()
-    {
-        return $this->hasOne('Prescription');
-    }
-
     public function timeslot()
     {
         return $this->belongsTo('Timeslot', 'timeslot_id');

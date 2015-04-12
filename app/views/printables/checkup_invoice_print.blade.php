@@ -2,7 +2,7 @@
     <body onload="window.print()">
         <img src='./images/logo_new1.jpg'/>
         <center>
-            <h1><u> Checkup Fee Invoice </u></h1>
+            <h1><u> Operation Fee Invoice </u></h1>
         </center>
         <table style='border-collapse: collapse; width: 70%; margin-left:auto; margin-right:auto' cellpadding='7' border='1'>
 
@@ -15,11 +15,11 @@
                 <td><label>{{ $patient->patient_id }}</label></td>
             </tr>
             <tr>
-                <td height='20'><label>Visit Date:</label></td>
+                <td height='20'><label>Opeartion Date:</label></td>
                 <td><label> {{ $date }} </label></td>
             </tr>
             <tr>
-                <td height='20'><label>Visit Time:</label></td>
+                <td height='20'><label>Operation Time:</label></td>
                 <td><label> {{ $time }}</label></td>
             </tr>
             <tr>

@@ -17,6 +17,11 @@ class Token extends \Eloquent {
     {
         return $this->belongsTo('Patient');
     }
+    
+    public function prescription()
+    {
+        return $this->hasOne('Prescription');
+    }
 
     public function doctor()
     {

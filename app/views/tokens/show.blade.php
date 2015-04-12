@@ -52,7 +52,7 @@ Token Details
               </tr>
               <tr>
                   <td width="272" height="55"><label>Checkup Fee:</label> </td>
-                  <td width="333"><label>{{{ $token->fee }}}</label></td>
+                  <td width="333"><label>{{{ $token->fee }}}-/Rs</label></td>
               </tr>
               
               <tr>

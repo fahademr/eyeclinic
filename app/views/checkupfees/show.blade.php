@@ -3,7 +3,7 @@
                           TITLE
 =========================================================-->
 @section('title')
-Checkup Fee Details
+Operation Fee Details
 @stop
 
 
@@ -15,7 +15,7 @@ Checkup Fee Details
 
 		<div class = "user_logo">
 			<div class="header_1 wrap_3 color_3" style="color: #fff; padding-top: 20px">
-                        Checkup Fee Details
+                        Operation Fee Details
             </div>
 		</div>
 		<br><br><br>
@@ -27,12 +27,12 @@ Checkup Fee Details
             <div id="regForm" style="border: 4px solid #129894; width: 800px; height: 100%; background-color: #EBEBEB">
                 <table class="row_border" style=" border-radius: 10px; margin: 5%;" width="621" height="220">
               <tr>
-                <td width="272" height="55"><label>Checkup Fee*</label> </td>
+                <td width="272" height="55"><label>Operation Fee*</label> </td>
                 <td width="333"><label>{{{ $checkupfee->checkup_fee }}}-/Rs</label></td>
                 </tr>
               
                 <tr>
-                <td width="272"><label>Checkup Note</label></td>
+                <td width="272"><label>Fee Note</label></td>
                 <td width="333"><label><div style="width: 333px; word-wrap: break-word">{{{ $checkupfee->fee_note }}}</div></label></td>
                 </tr>
 

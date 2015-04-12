@@ -3,7 +3,7 @@
                           TITLE
 =========================================================-->
 @section('title')
-    Select Appointment
+    Select Booking
 @stop
 
 
@@ -15,7 +15,7 @@
 
         <div class = "user_logo">
             <div class="header_1 wrap_3 color_3" style="color: #fff; padding-top: 20px">
-                       Select Appointment
+                       Select Booking
             </div>
         </div>
 

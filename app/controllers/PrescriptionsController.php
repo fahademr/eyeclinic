@@ -11,9 +11,8 @@ class PrescriptionsController extends \BaseController {
 	{
         $patient_id = Input::get('id');
         $patient = Patient::find($patient_id);
-        $appointments = $patient->appointments()->has('prescription')->get();
-
-        return View::make('prescriptions.index', compact('appointments'));
+        $tokens = $patient->tokens()->has('prescription')->get();
+        return View::make('prescriptions.index', compact('tokens'));
 	}
 
 	/**
@@ -23,10 +22,10 @@ class PrescriptionsController extends \BaseController {
 	 */
 	public function create()
 	{
-		$appointment = Appointment::find(Input::get('id'));
-        $patient_id = $appointment->patient->id;
+		$token = Token::find(Input::get('id'));
+        $patient_id = $token->patient->id;
         $doctors = Employee::where('role', 'Doctor')->where('status', 'Active')->get();
-        return View::make('prescriptions.create', compact('appointment', 'patient_id', 'doctors'));
+        return View::make('prescriptions.create', compact('token', 'patient_id', 'doctors'));
 	}
 
 	/**
@@ -56,7 +55,7 @@ class PrescriptionsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$prescription = Prescription::where('appointment_id', $id)->get()->first();
+		$prescription = Prescription::where('token_id', $id)->get()->first();
         if(Input::get('flag') != null) {
             $flag = Input::get('flag');
         }
@@ -71,7 +70,7 @@ class PrescriptionsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$prescription = Prescription::where('appointment_id', $id)->get()->first();
+		$prescription = Prescription::where('token_id', $id)->get()->first();
 
 		return View::make('prescriptions.edit', compact('prescription'));
 	}

@@ -38,7 +38,7 @@ Create Prescriptions
               <tr>
                  <td width="272" height="55"><label>Current Visit Date*</label> </td>
                  <td width="333">
-                    <label> {{ $appointment->date }}</label>
+                    <label> {{ date('j F, Y', strtotime($token->created_at)) }}</label>
                  </td>
               </tr>
 
@@ -46,7 +46,7 @@ Create Prescriptions
                 <td width="272" height="55"><label>Doctor Name*</label> </td>
                 <td width="333">
                 
-                	<label> {{ $appointment->employee->name }}</label>
+                	<label> {{ $token->doctor->name }}</label>
 
                 </td>
                 </tr>
@@ -65,12 +65,12 @@ Create Prescriptions
 
                 <tr>
                 <td width="272"><label>Note:</label></td>
-                <td width="333" height="200">{{ Form::textarea('note', null, array('rows' => '7', 'cols' => '20', 'placeholder' => 'note', "style" => "font-size: 1.2em; margin-top: 2px; resize: none;") ) }}</td>
+                <td width="333" height="200">{{ Form::textarea('note', null, array('rows' => '7', 'cols' => '20', 'placeholder' => 'Enter note here...', "style" => "font-size: 1.2em; margin-top: 2px; resize: none;") ) }}</td>
                 </tr>
 
                 <tr>
-                <input name="patient_id" type="hidden" value="{{ $appointment->patient->id }}">
-                <input name="appointment_id" type="hidden" value="{{ $appointment->id }}">
+                <input name="patient_id" type="hidden" value="{{ $token->patient->id }}">
+                <input name="token_id" type="hidden" value="{{ $token->id }}">
                 <td colspan="2"> 
                     <center>
                     <div class="btn-wrap">

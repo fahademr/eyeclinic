@@ -3,7 +3,7 @@
                           TITLE
 =========================================================-->
 @section('title')
-    Manage Checkup Fee
+    Manage Operation Fee
 @stop
 
 
@@ -15,7 +15,7 @@
         
 		<div class = "user_logo">
 			<div class="header_1 wrap_3 color_3" style="color: #fff; padding-top: 20px">
-                       Manage Checkup Fee
+                       Manage Operation Fee
             </div>
 		</div>
 
@@ -28,7 +28,7 @@
                 <table id="example" style=" border: 1px solid black" class="display" cellspacing="0" width="80%">
                 <thead>
                     <tr>
-                        <th style="width: 20%">Checkup Fee</th>
+                        <th style="width: 20%">Operation Fee</th>
                         
                         <th style="width: 25%">Manage</th>
                     </tr>

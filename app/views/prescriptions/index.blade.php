@@ -30,8 +30,8 @@
                     <tr>
                         <th style="width: 20%">Patient Name</th>
                         <th>Doctor Name</th>
-                        <th>Appointment Date</th>
-                        <th>Appointment Time</th>
+                        <th>Checkup Date</th>
+                        <th>Checkup Time</th>
                         <th style="width: 25%">Action</th>
                     </tr>
                 </thead>
@@ -39,16 +39,16 @@
                 <tbody>
 
                 
-                    @foreach($appointments as $appointment)
+                    @foreach($tokens as $token)
                         <tr>
-                            <td>{{{ $appointment->patient->name }}}</td>
-                            <td>{{{ $appointment->employee->name }}}</td>
-                            <td>{{{ $appointment->date }}}</td>
-                            <td>{{{ $appointment->time }}}</td>
+                            <td>{{{ $token->patient->name }}}</td>
+                            <td>{{{ $token->doctor->name }}}</td>
+                            <td>{{{ date('j F, Y', strtotime($token->created_at)) }}}</td>
+                            <td>{{{ date('g:i A', strtotime($token->created_at)) }}}</td>
                             <td>
-                            {{ link_to_route('prescriptions.show', 'View', [$appointment->id], ['class' => 'data_table_btn', 'style' => 'margin-bottom: 2px'])}}
+                            {{ link_to_route('prescriptions.show', 'View', [$token->id], ['class' => 'data_table_btn', 'style' => 'margin-bottom: 2px'])}}
                         @if(Auth::user()->role != 'Doctor') 
-                            {{ link_to_route('prescriptions.edit', 'Edit', [$appointment->id], ['class' => 'data_table_btn'])}}
+                            {{ link_to_route('prescriptions.edit', 'Edit', [$token->id], ['class' => 'data_table_btn'])}}
                         @endif
                             </td>
                         </tr>

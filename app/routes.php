@@ -175,9 +175,9 @@ Route::group(array('before' => 'auth'), function(){
     });
 
     Route::get('app_prescription', function(){
-        $appointments = Appointment::has('prescription', '=', 0)->get();
+        $tokens = Token::has('prescription', '=', 0)->get();
         $flag = "prescription";
-        return View::make('appointment_based_data.appointments', compact('appointments', 'flag'));
+        return View::make('appointment_based_data.appointments', compact('tokens', 'flag'));
     });
 
     Route::get('app_tests', function(){
@@ -226,18 +226,18 @@ Route::group(array('before' => 'auth'), function(){
 
     // Prints
     Route::get('app_pres_print', function(){
-        $appointments = Appointment::has('prescription')->get();
+        $tokens = Token::has('prescription')->get();
         $flag = "pres_print";
-        return View::make('appointment_based_data.appointments', compact('appointments', 'flag'));
+        return View::make('appointment_based_data.appointments', compact('tokens', 'flag'));
     });
 
     Route::get('pres_print', function(){
         $id = Input::get('id');
         $prescription = Prescription::findOrFail($id);
-        $date = date('j F, Y', strtotime($prescription->appointment->date));
-        $time = date('H:i:s', strtotime($prescription->appointment->time));
-        $doctor_name = $prescription->appointment->employee->name;
-        $patient = $prescription->appointment->patient;
+        $date = date('j F, Y', strtotime($prescription->token->created_at));
+        $time = date('g:i A', strtotime($prescription->token->created_at));
+        $doctor_name = $prescription->token->doctor->name;
+        $patient = $prescription->token->patient;
 
         return View::make('printables.prescription_print',
             compact('prescription', 'date', 'time', 'doctor_name', 'patient'));
@@ -313,9 +313,9 @@ Route::group(array('before' => 'auth'), function(){
     Route::get('pdf_record', function(){
         $id = Input::get('id');
         $patient = Patient::find($id);
-        $appointments = $patient->appointments()->get();
+        $tokens = $patient->tokens()->get();
         $flag = "pdf_record";
-        return View::make('appointment_based_data.appointments', compact('appointments', 'flag'));
+        return View::make('appointment_based_data.appointments', compact('tokens', 'flag'));
     });
 
     Route::get('pdf', 'HomeController@pdf_record');

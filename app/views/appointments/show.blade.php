@@ -3,7 +3,7 @@
                           TITLE
 =========================================================-->
 @section('title')
-Appointment Details
+Booking Details
 @stop
 
 
@@ -15,7 +15,7 @@ Appointment Details
 
 		<div class = "user_logo">
 			<div class="header_1 wrap_3 color_3" style="color: #fff; padding-top: 20px">
-                        Appointment Details
+                        Booking Details
             </div>
 		</div>
 		<br><br><br>
@@ -63,7 +63,7 @@ Appointment Details
                 </tr>
 
                 <tr>
-                <td width="272"><label>Checkup Reason:</label></td>
+                <td width="272"><label>Operation Note:</label></td>
                 <td width="333"><label><div style="width: 333px; word-wrap: break-word">{{{ $appointment->checkup_reason }}}</div></label></td>
                 </tr>
 

@@ -79,10 +79,10 @@ class HomeController extends BaseController {
     public function print_pres(){
         $id = Input::get('id');
         $prescription = Prescription::findOrFail($id);
-        $date = date('j F, Y', strtotime($prescription->appointment->date));
-        $time = date('H:i:s', strtotime($prescription->appointment->time));
-        $doctor_name = $prescription->appointment->employee->name;
-        $patient = $prescription->appointment->patient;
+        $date = date('j F, Y', strtotime($prescription->token->created_at));
+        $time = date('g:i A', strtotime($prescription->token->created_at));
+        $doctor_name = $prescription->token->doctor->name;
+        $patient = $prescription->token->patient;
 
 
         $html = "<html><body>"
@@ -182,8 +182,8 @@ class HomeController extends BaseController {
     }
 
     function pdf_record(){
-        $appointment = Appointment::find(Input::get('id'));
-        $patient = $appointment->patient;
+        $token = Token::find(Input::get('id'));
+        $patient = $token->patient;
 
 //      Personal Information
         $dob = date('j F, Y', strtotime($patient->dob));
@@ -244,25 +244,26 @@ class HomeController extends BaseController {
                     </tr>
                 </table>";
 
-//      Appointment Details
-        $doctor = $appointment->employee->name;
-        $visit_date = date('j F, Y', strtotime($appointment->date));
-        if($appointment->checkupfee){
-            $checkup_fee = $appointment->checkupfee->checkup_fee;
+//      Token Details
+        $doctor = $token->doctor->name;
+        $visit_date = date('j F, Y', strtotime($token->created_at));
+        $visit_time = date('g:i A', strtotime($token->created_at));
+        if($token->fee){
+            $checkup_fee = $token->fee;
         }else{
             $checkup_fee = 0;
         }
 
         $html .= "<br> <br>
                 <table style='border-collapse: collapse; margin-left:auto; margin-right:auto' cellpadding='7' border='1'>
-                    <caption>(Appointment Details)</caption>
+                    <caption>(Token Details)</caption>
                     <tr>
                         <td height='20'><label>Visit Date:</label></td>
                         <td><label> $visit_date </label></td>
                     </tr>
                     <tr>
                         <td height='20'><label>Visit Time:</label></td>
-                        <td><label> $appointment->time </label></td>
+                        <td><label> $visit_time </label></td>
                     </tr>
                     <tr>
                         <td height='20'><label>Doctor Name:</label></td>
@@ -270,7 +271,7 @@ class HomeController extends BaseController {
                     </tr>
                     <tr>
                         <td height='20'><label>Checkup Reason:</label></td>
-                        <td><label> $appointment->checkup_reason </label></td>
+                        <td><label> $token->note </label></td>
                     </tr>
                     <tr>
                         <td height='20'> <label>Checkup Fee:</label></td>
@@ -280,12 +281,14 @@ class HomeController extends BaseController {
 
 
 //      Prescription
-        if($appointment->prescription) {
-            $doctor = $appointment->employee->name;
-            $medicines = $appointment->prescription->medicines;
-            $code = $appointment->prescription->code;
-            $note = $appointment->prescription->note;
-            $html .= "<br> <br>
+        if($token->prescription) {
+            $doctor = $token->doctor->name;
+            $medicines = $token->prescription->medicines;
+            $date = date('j F, Y', strtotime($token->prescription->created_at));
+            $time = date('g:i A', strtotime($token->prescription->created_at));
+            $code = $token->prescription->code;
+            $note = $token->prescription->note;
+            $html .= "<br> <br><br><br><br>
                 <table style='border-collapse: collapse; margin-left:auto; margin-right:auto' cellpadding='7' border='1'>
                     <caption>(Prescription)</caption>
                     <tr>
@@ -298,11 +301,11 @@ class HomeController extends BaseController {
                     </tr>
                     <tr>
                         <td height='20'><label>Visit Date:</label></td>
-                        <td><label> $appointment->date </label></td>
+                        <td><label> $date </label></td>
                     </tr>
                     <tr>
                         <td height='20'><label>Visit Time:</label></td>
-                        <td><label> $appointment->time </label></td>
+                        <td><label> $time </label></td>
                     </tr>
                     <tr>
                         <td height='20'><label>Doctor Name:</label></td>
@@ -324,85 +327,85 @@ class HomeController extends BaseController {
         }
 
 //      Vitalsigns
-        if($appointment->vitalsign) {
-            $note = $appointment->vitalsign->note;
-            $vitals = $appointment->vitalsign;
-            $html .= "<br> <br>
-                <table style='border-collapse: collapse; margin-left:auto; margin-right:auto' cellpadding='7' border='1'>
-                    <caption>(Vital Signs)</caption>
-                    <tr>
-                        <td height='20'><label>Patient Height:</label></td>
-                        <td><label> $vitals->height - $vitals->height_unit </label></td>
-                    </tr>
-                    <tr>
-                        <td height='20'><label>Patient Weight:</label></td>
-                        <td><label> $vitals->weight - $vitals->weight_unit </label></td>
-                    </tr>
-                    <tr>
-                        <td height='20'><label>Blood Pressure (Systolic):</label></td>
-                        <td><label> $vitals->bp_systolic - $vitals->bp_systolic_unit </label></td>
-                    </tr>
-                    <tr>
-                        <td height='20'><label>Blood Pressure (Diastolic):</label></td>
-                        <td><label> $vitals->bp_diastolic - $vitals->bp_diastolic_unit </label></td>
-                    </tr>
-                    <tr>
-                        <td height='20'><label>Blood Group:</label></td>
-                        <td><label> $vitals->blood_group </label></td>
-                    </tr>
-                    <tr>
-                        <td height='20'><label>Pulse Rate:</label></td>
-                        <td><label> $vitals->pulse_rate - $vitals->pulse_rate_unit </label></td>
-                    </tr>
-                    <tr>
-                        <td height='20'><label>Respiration Rate:</label></td>
-                        <td><label> $vitals->respiration_rate - $vitals->respiration_rate_unit </label></td>
-                    </tr>
-                    <tr>
-                        <td height='20'> <label>Temperature:</label></td>
-                        <td><label> $vitals->temprature - $vitals->temprature_unit </label></td>
-                    </tr>
-                    <tr>
-                        <td height='20'><label>Note:</label></td>
-                        <td><label> $vitals->note </label></td>
-                    </tr>
-                </table>";
-        }
+//        if($appointment->vitalsign) {
+//            $note = $appointment->vitalsign->note;
+//            $vitals = $appointment->vitalsign;
+//            $html .= "<br> <br>
+//                <table style='border-collapse: collapse; margin-left:auto; margin-right:auto' cellpadding='7' border='1'>
+//                    <caption>(Vital Signs)</caption>
+//                    <tr>
+//                        <td height='20'><label>Patient Height:</label></td>
+//                        <td><label> $vitals->height - $vitals->height_unit </label></td>
+//                    </tr>
+//                    <tr>
+//                        <td height='20'><label>Patient Weight:</label></td>
+//                        <td><label> $vitals->weight - $vitals->weight_unit </label></td>
+//                    </tr>
+//                    <tr>
+//                        <td height='20'><label>Blood Pressure (Systolic):</label></td>
+//                        <td><label> $vitals->bp_systolic - $vitals->bp_systolic_unit </label></td>
+//                    </tr>
+//                    <tr>
+//                        <td height='20'><label>Blood Pressure (Diastolic):</label></td>
+//                        <td><label> $vitals->bp_diastolic - $vitals->bp_diastolic_unit </label></td>
+//                    </tr>
+//                    <tr>
+//                        <td height='20'><label>Blood Group:</label></td>
+//                        <td><label> $vitals->blood_group </label></td>
+//                    </tr>
+//                    <tr>
+//                        <td height='20'><label>Pulse Rate:</label></td>
+//                        <td><label> $vitals->pulse_rate - $vitals->pulse_rate_unit </label></td>
+//                    </tr>
+//                    <tr>
+//                        <td height='20'><label>Respiration Rate:</label></td>
+//                        <td><label> $vitals->respiration_rate - $vitals->respiration_rate_unit </label></td>
+//                    </tr>
+//                    <tr>
+//                        <td height='20'> <label>Temperature:</label></td>
+//                        <td><label> $vitals->temprature - $vitals->temprature_unit </label></td>
+//                    </tr>
+//                    <tr>
+//                        <td height='20'><label>Note:</label></td>
+//                        <td><label> $vitals->note </label></td>
+//                    </tr>
+//                </table>";
+//        }
 
 //        Diagnostic Procedure
-        if($appointment->diagonosticprocedure) {
-            $note = $appointment->diagonosticprocedure->procedure_note;
-            $html .= "<br> <br>
-                <table style='border-collapse: collapse; margin-left:auto; margin-right:auto' cellpadding='7' border='1'>
-                    <caption>(Diagnostic Procedure)</caption>
-                    <tr>
-                        <td height='20'><label>Procedure Note:</label></td>
-                        <td><label> $note </label></td>
-                    </tr>
-                </table>";
-        }
+//        if($appointment->diagonosticprocedure) {
+//            $note = $appointment->diagonosticprocedure->procedure_note;
+//            $html .= "<br> <br>
+//                <table style='border-collapse: collapse; margin-left:auto; margin-right:auto' cellpadding='7' border='1'>
+//                    <caption>(Diagnostic Procedure)</caption>
+//                    <tr>
+//                        <td height='20'><label>Procedure Note:</label></td>
+//                        <td><label> $note </label></td>
+//                    </tr>
+//                </table>";
+//        }
 
 //        Lab Tests
-        if($appointment->labtests) {
-            foreach($appointment->labtests as $labtest){
-                $html .= "<br> <br>
-                <table style='border-collapse: collapse; margin-left:auto; margin-right:auto' cellpadding='7' border='1'>
-                    <caption>(Lab Test)</caption>
-                    <tr>
-                        <td height='20'><label>Test Name:</label></td>
-                        <td><label> $labtest->test_name </label></td>
-                    </tr>
-                    <tr>
-                        <td height='20'><label>Test Description:</label></td>
-                        <td><label> $labtest->test_description </label></td>
-                    </tr>
-                    <tr>
-                        <td height='20'><label>Test Results:</label></td>
-                        <td><label> $labtest->test_results </label></td>
-                    </tr>
-                </table>";
-            }
-        }
+//        if($appointment->labtests) {
+//            foreach($appointment->labtests as $labtest){
+//                $html .= "<br> <br>
+//                <table style='border-collapse: collapse; margin-left:auto; margin-right:auto' cellpadding='7' border='1'>
+//                    <caption>(Lab Test)</caption>
+//                    <tr>
+//                        <td height='20'><label>Test Name:</label></td>
+//                        <td><label> $labtest->test_name </label></td>
+//                    </tr>
+//                    <tr>
+//                        <td height='20'><label>Test Description:</label></td>
+//                        <td><label> $labtest->test_description </label></td>
+//                    </tr>
+//                    <tr>
+//                        <td height='20'><label>Test Results:</label></td>
+//                        <td><label> $labtest->test_results </label></td>
+//                    </tr>
+//                </table>";
+//            }
+//        }
 
         //        Family History
         if($patient->familyhistories){

@@ -121,8 +121,7 @@ class TimeslotsController extends \BaseController {
                 $timeslots = Timeslot::where('dutyday_id', $duty_day->id)
                     ->where('employee_id', $id);
                 foreach($appointments as $appointment){
-                    $slot = $timeslots
-                                ->where('slot', '!=', $appointment->time)->get()->toJson();
+                    $slot = $timeslots->where('slot', '!=', $appointment->time)->get()->toJson();
                 }
             }else{
                 $slot = Timeslot::where('dutyday_id', $duty_day->id)->get()->toJson();

@@ -3,7 +3,7 @@
                           TITLE
 =========================================================-->
 @section('title')
-Edit Appointment
+Edit Booking
 @stop
 
 
@@ -15,7 +15,7 @@ Edit Appointment
 
 		<div class = "user_logo">
 			<div class="header_1 wrap_3 color_3" style="color: #fff; padding-top: 20px">
-                        Edit Appointment
+                        Edit Booking
             </div>
 		</div>
 		<br><br><br>
@@ -71,8 +71,8 @@ Edit Appointment
                   </td>
                </tr>
                <tr>
-                  <td width="272" height="55"><label>Checkup Reason:</label> </td>
-                  <td width="333" height="200">{{ Form::textarea('checkup_reason', null, array('rows' => '7', 'cols' => '20', 'placeholder' => 'Enter Reason', "style" => "font-size: 1.2em; margin-top: 2px; resize: none; width: 98%") ) }}</td>
+                  <td width="272" height="55"><label>Operation Note:</label> </td>
+                  <td width="333" height="200">{{ Form::textarea('checkup_reason', null, array('rows' => '7', 'cols' => '20', 'placeholder' => 'Enter note here...', "style" => "font-size: 1.2em; margin-top: 2px; resize: none; width: 98%") ) }}</td>
                </tr>
 
                 <tr>

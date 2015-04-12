@@ -29,14 +29,14 @@ Prescription Details
              
               <tr>
                 <td width="272" height="55"><label>Visit Date:</label></td>
-                <td width="333"><label>{{{ date('j F, Y', strtotime($prescription->appointment->date)) }}}</label></td>
+                <td width="333"><label>{{{ date('j F, Y', strtotime($prescription->token->created_at)) }}}</label></td>
                 </tr>
                 <td width="272" height="55"><label>Visit Time:</label></td>
-                <td width="333"><label>{{{ date('H:i:s', strtotime($prescription->appointment->time)) }}}</label></td>
+                <td width="333"><label>{{{ date('g:i A', strtotime($prescription->token->created_at)) }}}</label></td>
                 </tr>
                  <tr>
                 <td width="272" height="55"><label>Doctor Name:</label> </td>
-                <td width="333"><label>{{{ $prescription->appointment->employee->name }}}</label></td>
+                <td width="333"><label>{{{ $prescription->token->doctor->name }}}</label></td>
                 </tr>
 
                 <tr>

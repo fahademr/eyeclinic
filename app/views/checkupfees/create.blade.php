@@ -3,7 +3,7 @@
                           TITLE
 =========================================================-->
 @section('title')
-Create Checkup Fee
+Create Operation Fee
 @stop
 
 
@@ -15,7 +15,7 @@ Create Checkup Fee
         
 		<div class = "user_logo">
 			<div class="header_1 wrap_3 color_3" style="color: #fff; padding-top: 20px">
-                        Create Checkup Fee
+                        Add Operation Fee
             </div>
 		</div>
 		<br><br><br>
@@ -35,15 +35,15 @@ Create Checkup Fee
             {{ Form::open(array('action' => 'CheckupfeesController@store', 'style' => 'padding: 40px', 'id' => 'regForm')) }}
                 <table width="621" height="220" border="0">
               <tr>
-                <td width="272" height="55"><label>Checkup Fee*</label> </td>
+                <td width="272" height="55"><label>Operation Fee*</label> </td>
                 <td width="333">
                     {{ Form::input('number', 'checkup_fee', null, array('required' => 'true')) }}
                 </td>
                 </tr>
              
                 <tr>
-                <td width="272"><label>Checkup Note:</label></td>
-                <td width="333" height="200">{{ Form::textarea('fee_note', null, array('rows' => '7', 'cols' => '20', 'placeholder' => 'note', "style" => "font-size: 1.2em; margin-top: 2px; resize: none;") ) }}</td>
+                <td width="272"><label>Fee Note:</label></td>
+                <td width="333" height="200">{{ Form::textarea('fee_note', null, array('rows' => '7', 'cols' => '20', 'placeholder' => 'Enter note here...', "style" => "font-size: 1.2em; margin-top: 2px; resize: none;") ) }}</td>
                 </tr>
                 <tr> 
                 <input name="patient_id" type="hidden" value="{{ $appointment->patient->id }}">
