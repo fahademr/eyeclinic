@@ -30,8 +30,7 @@ class="current"
 					
 					<a class="purple" href="search_pmr">View Medical Record</a>
 					<a class="blue" href="app_vitals">View Vital Signs</a>
-					<a class="orange" href="appointments">View Appointments</a>
-					
+					<a class="orange" href="appointments">Operation Bookings</a>
 					
 				</div>
 			</div>

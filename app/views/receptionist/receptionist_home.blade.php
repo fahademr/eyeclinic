@@ -27,9 +27,10 @@ class="current"
 		<br>
 			<div>
 				<div class="menu" style="margin-left: 10%; margin-right: 10%">
+				    <a class="orange" href="patients" >Manage Patients </a>
 					<a class="pink" href="appointments">Operation Bookings</a>
 					<a class="purple" href="app_proc"> Operation Procedures	</a>
-					<a class="orange" href="tokens">Manage Tokens</a>
+					<a class="pink" href="tokens">Manage Tokens</a>
 					<a class="blue" href="dutydays">Doctor Schedules</a>
 					<a class="pink" href="patients">Manage Patients</a>
 					<a class="purple" href="search_pmr">Manage Medical Record</a>

@@ -29,7 +29,7 @@ class="current"
 				<div class="menu" style="margin-left: 10%; margin-right: 10%">
 					<a class="ferozi" href="app_check_fee">Add Operation Fee</a>
 
-					<a class="purple" href="app_checkup_fee_print">Print Invoice</a>
+					<a class="purple" href="app_checkup_fee_print">Print Operation Invoice</a>
 					{{--<a class="blue" href="app_test_fee">Manage Test Fee</a>--}}
 
 					{{--<a class="pink" href="app_test_fee_print">Print Test Invoice</a>--}}
